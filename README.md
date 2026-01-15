@@ -6,6 +6,8 @@ The platform promotes conscious consumption by showcasing verified green product
 
 ---
 
+https://green-gadgets-hub.vercel.app
+
 ## 🚀 Live Features Overview
 
 - ✅ Eco-friendly product marketplace
