@@ -2,12 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function ItemCard({ item }) {
-  // Use either id or _id
   const itemId = item.id || item._id;
   
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100">
-      {/* Item Image */}
       <div className="h-48 overflow-hidden bg-gray-100">
         {item.image ? (
           <img 
@@ -22,7 +20,6 @@ export default function ItemCard({ item }) {
         )}
       </div>
       
-      {/* Item Details */}
       <div className="p-4">
         <h2 className="text-lg font-bold text-gray-900 mb-1 truncate">
           {item.name}
@@ -32,7 +29,6 @@ export default function ItemCard({ item }) {
           {item.description || "No description available"}
         </p>
         
-        {/* Price */}
         <div className="flex items-center justify-between mb-2">
           <span className="text-xl font-bold text-green-700">
             ${typeof item.price === 'number' ? item.price.toFixed(2) : item.price}
@@ -44,7 +40,6 @@ export default function ItemCard({ item }) {
           )}
         </div>
         
-        {/* Environmental Impact */}
         {item.co2 && (
           <div className="mb-4 p-2 bg-green-50 rounded">
             <div className="flex items-center text-sm text-green-700">
@@ -54,7 +49,6 @@ export default function ItemCard({ item }) {
           </div>
         )}
         
-        {/* View Details Button */}
         <Link 
           href={`/items/${itemId}`}
           className="block w-full text-center bg-green-600 hover:bg-green-700 text-white py-2 rounded-md font-medium transition-colors"

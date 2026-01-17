@@ -12,7 +12,7 @@ export default function Login() {
 
   const handleLogin = () => {
     if (email === "admin@greengadgets.com" && password === "123456") {
-      login(); // use auth.js helper
+      login(); 
       router.push("/items");
     } else {
       alert("Invalid Credentials");

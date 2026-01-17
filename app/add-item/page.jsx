@@ -13,14 +13,12 @@ export default function AddItem() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
-  // 🔐 Protect route
   useEffect(() => {
     if (!document.cookie.includes("greengadgets_auth=true")) {
       router.push("/login");
     }
   }, [router]);
 
-  // Auto-hide toast after 3 seconds
   useEffect(() => {
     if (toast.show) {
       const timer = setTimeout(() => {
@@ -58,14 +56,12 @@ export default function AddItem() {
       if (res.ok) {
         showToast("✅ Product created successfully!", "success");
         
-        // Reset form
         setName("");
         setDescription("");
         setPrice("");
         setImage("");
         setCo2("");
         
-        // Redirect after showing toast
         setTimeout(() => {
           router.push("/items");
         }, 1500);
@@ -83,7 +79,6 @@ export default function AddItem() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      {/* Toast Notification */}
       {toast.show && (
         <div className="fixed top-4 right-4 z-50 animate-slide-in">
           <div
@@ -102,7 +97,6 @@ export default function AddItem() {
       )}
 
       <div className="max-w-2xl mx-auto px-4">
-        {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.push("/items")}
@@ -116,10 +110,8 @@ export default function AddItem() {
           </p>
         </div>
 
-        {/* Form */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="space-y-5">
-            {/* Product Name */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Product Name <span className="text-red-500">*</span>
@@ -133,7 +125,6 @@ export default function AddItem() {
               />
             </div>
 
-            {/* Description */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Description
@@ -147,7 +138,6 @@ export default function AddItem() {
               />
             </div>
 
-            {/* Price */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Price ($) <span className="text-red-500">*</span>
@@ -163,7 +153,6 @@ export default function AddItem() {
               />
             </div>
 
-            {/* Image URL */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Image URL
@@ -190,7 +179,6 @@ export default function AddItem() {
               )}
             </div>
 
-            {/* CO2 Saved */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 CO₂ Saved
@@ -208,7 +196,6 @@ export default function AddItem() {
             </div>
           </div>
 
-          {/* Submit Button */}
           <div className="mt-8 flex gap-3">
             <button
               onClick={handleSubmit}
@@ -238,21 +225,7 @@ export default function AddItem() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes slide-in {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-        .animate-slide-in {
-          animation: slide-in 0.3s ease-out;
-        }
-      `}</style>
+      
     </div>
   );
 }

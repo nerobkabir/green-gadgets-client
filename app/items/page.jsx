@@ -57,7 +57,6 @@ export default function ItemsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-3xl font-bold text-gray-900 mb-3">
           Eco-Friendly Products
@@ -72,7 +71,6 @@ export default function ItemsPage() {
         </div>
       </div>
 
-      {/* Items Grid */}
       {items.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🌍</div>
@@ -91,7 +89,6 @@ export default function ItemsPage() {
         </div>
       )}
 
-      {/* Environmental Impact Summary */}
       {items.length > 0 && (
         <div className="mt-12 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
           <h2 className="text-xl font-bold text-gray-900 mb-4 text-center">

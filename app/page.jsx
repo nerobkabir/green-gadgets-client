@@ -1,16 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { 
-  FiCheck, FiArrowRight, FiShield, FiTruck, 
-  FiStar, FiUsers, FiPackage, FiShoppingBag,
-  FiFeather, FiGlobe, FiHome, FiHeart
+import { useState, useEffect } from "react";
+import {
+  FiCheck, FiArrowRight, FiShield, FiStar, FiUsers,
+  FiPackage, FiShoppingBag, FiMenu, FiX
 } from "react-icons/fi";
-import { FaLeaf, FaRecycle, FaTree, FaSeedling } from "react-icons/fa";
+import { FaLeaf, FaTree } from "react-icons/fa";
 
-export default function Home() {
+export default function LandingPage() {
   const [stats, setStats] = useState({
     co2Saved: 12500,
     plasticAvoided: 8200,
@@ -18,7 +15,17 @@ export default function Home() {
     productsListed: 89
   });
 
-  // Animate counting numbers
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStats(prev => ({
@@ -28,7 +35,6 @@ export default function Home() {
         productsListed: prev.productsListed
       }));
     }, 5000);
-    
     return () => clearInterval(interval);
   }, []);
 
@@ -38,7 +44,7 @@ export default function Home() {
       name: "Bamboo Toothbrush Set",
       description: "100% biodegradable bamboo toothbrushes",
       price: 12.99,
-      image: "https://images.unsplash.com/photo-1581338834647-b1fb2c4d0b7c?w=400&h=300&fit=crop",
+      emoji: "🪥",
       co2: "500g per set"
     },
     {
@@ -46,7 +52,7 @@ export default function Home() {
       name: "Reusable Shopping Bag",
       description: "Organic cotton reusable grocery bag",
       price: 8.99,
-      image: "https://images.unsplash.com/photo-1553545204-5336c0b43414?w=400&h=300&fit=crop",
+      emoji: "🛍️",
       co2: "1.2kg per bag"
     },
     {
@@ -54,7 +60,7 @@ export default function Home() {
       name: "Stainless Steel Water Bottle",
       description: "BPA-free, insulated stainless steel bottle",
       price: 24.99,
-      image: "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400&h=300&fit=crop",
+      emoji: "💧",
       co2: "2.5kg per bottle"
     }
   ];
@@ -97,379 +103,422 @@ export default function Home() {
   ];
 
   return (
-    <main className="space-y-16 md:space-y-24 pb-16">
-      {/* Section 1: Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 pt-8 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div>
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-800 font-semibold text-sm mb-4">
-                  <FaLeaf className="mr-2" />
+    <div className="min-h-screen bg-white">
+
+      <main >
+        <section id="home" className="relative overflow-hidden bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50  md:py-24">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-72 h-72 bg-green-400 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-emerald-400 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-8 animate-fade-in">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white shadow-md text-green-800 font-semibold text-sm">
+                  <FaLeaf className="mr-2 text-green-600" />
                   Sustainable Shopping Platform
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
                   Shop Green.
-                  <span className="block text-green-600">Save the Planet.</span>
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">
+                    Save the Planet.
+                  </span>
                 </h1>
-                <p className="text-xl text-gray-600 mt-6 max-w-2xl">
-                  Discover eco-friendly products that reduce your carbon footprint. 
+
+                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+                  Discover eco-friendly products that reduce your carbon footprint.
                   Every purchase helps combat climate change and plastic pollution.
                 </p>
-              </div>
-              
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-green-700">
-                    {stats.co2Saved.toLocaleString()} kg
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl transition-shadow">
+                    <div className="text-3xl font-bold text-green-700">
+                      {stats.co2Saved.toLocaleString()}kg
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">CO₂ Saved</div>
                   </div>
-                  <div className="text-sm text-gray-600">CO₂ Saved</div>
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl transition-shadow">
+                    <div className="text-3xl font-bold text-green-700">
+                      {stats.plasticAvoided.toLocaleString()}kg
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Plastic Avoided</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl transition-shadow">
+                    <div className="text-3xl font-bold text-green-700">
+                      {stats.happyCustomers.toLocaleString()}+
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Happy Customers</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl transition-shadow">
+                    <div className="text-3xl font-bold text-green-700">
+                      {stats.productsListed}+
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">Products</div>
+                  </div>
                 </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-green-700">
-                    {stats.plasticAvoided.toLocaleString()} kg
-                  </div>
-                  <div className="text-sm text-gray-600">Plastic Avoided</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-green-700">
-                    {stats.happyCustomers.toLocaleString()}+
-                  </div>
-                  <div className="text-sm text-gray-600">Happy Customers</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-green-700">
-                    {stats.productsListed}+
-                  </div>
-                  <div className="text-sm text-gray-600">Products Listed</div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="/items"
+                    className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    <FiShoppingBag className="mr-2" />
+                    Browse Products
+                    <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <a
+                    href="/login"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-green-700 font-semibold rounded-xl border-2 border-green-200 transition-all shadow-lg"
+                  >
+                    Sell Your Product
+                  </a>
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  href="/items" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all hover:shadow-lg"
-                >
-                  <FiShoppingBag className="mr-2" />
-                  Browse Products
-                  <FiArrowRight className="ml-2" />
-                </Link>
-                <Link 
-                  href="/login" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-green-700 font-semibold rounded-lg border-2 border-green-200 transition-all"
-                >
-                  Sell Your Product
-                </Link>
+              <div className="relative">
+                <div className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-green-400 to-emerald-500 shadow-2xl">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center p-8">
+                      <div className="text-9xl mb-6 animate-bounce-slow">🌍</div>
+                      <h3 className="text-3xl font-bold text-white drop-shadow-lg">Make Every Purchase Count</h3>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-2xl max-w-xs border border-green-100">
+                  <div className="flex items-center mb-3">
+                    <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <FiCheck className="text-white text-2xl" />
+                    </div>
+                    <div className="ml-4">
+                      <div className="font-bold text-lg">Verified Impact</div>
+                      <div className="text-sm text-gray-600">Real-time tracking</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Track your personal environmental impact with every purchase
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Right - Hero Image */}
-            <div className="relative">
-              <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-10"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="text-8xl mb-4">🌍</div>
-                    <h3 className="text-2xl font-bold text-white">Make Every Purchase Count</h3>
-                  </div>
-                </div>
+        <section id="products" className="py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 bg-green-100 rounded-full text-green-800 font-semibold text-sm mb-4">
+                FEATURED COLLECTION
               </div>
-              
-              {/* Floating Card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl max-w-xs">
-                <div className="flex items-center mb-3">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                    <FiCheck className="text-green-600 text-xl" />
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Sustainable Products You'll Love
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Handpicked eco-friendly products that make a real difference
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {featuredProducts.map((product, index) => (
+                <div
+                  key={product.id}
+                  className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100 transform hover:-translate-y-2 duration-300"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="h-56 bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-green-400 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div className="text-8xl transform group-hover:scale-110 transition-transform duration-300">
+                      {product.emoji}
+                    </div>
                   </div>
-                  <div className="ml-4">
-                    <div className="font-bold">Verified Impact</div>
-                    <div className="text-sm text-gray-600">Real-time tracking</div>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">{product.name}</h3>
+                      <span className="px-4 py-1 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 rounded-full text-sm font-bold">
+                        ${product.price}
+                      </span>
+                    </div>
+                    <p className="text-gray-600 mb-6">{product.description}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-green-700">
+                        <FaLeaf className="mr-2" />
+                        <span className="text-sm font-semibold">Saves {product.co2}</span>
+                      </div>
+                      <a
+                        href={`/items/${product.id}`}
+                        className="text-green-600 hover:text-green-700 font-semibold text-sm flex items-center group"
+                      >
+                        Learn More
+                        <FiArrowRight className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </div>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600">
-                  Track your personal environmental impact with every purchase
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href="/items"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all"
+              >
+                View All Products
+                <FiArrowRight className="ml-2" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="impact" className="py-16 md:py-24 bg-gradient-to-br from-green-900 via-emerald-900 to-teal-900 text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-green-400 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-400 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 bg-green-800/50 backdrop-blur-sm rounded-full text-green-200 font-semibold text-sm mb-4">
+                REAL IMPACT
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Our Community's Environmental Impact
+              </h2>
+              <p className="text-xl text-green-200 max-w-3xl mx-auto">
+                See how together we're making a measurable difference for our planet
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center p-10 bg-gradient-to-br from-green-800/50 to-emerald-800/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-green-700/50 hover:border-green-500/50 transition-all">
+                <div className="text-6xl mb-6">🌳</div>
+                <div className="text-5xl font-bold mb-3">
+                  {Math.floor(stats.co2Saved / 20).toLocaleString()}
+                </div>
+                <div className="text-xl font-semibold mb-2">Trees Equivalent</div>
+                <p className="text-green-200 text-sm">
+                  CO₂ saved requires this many trees to absorb in one year
+                </p>
+              </div>
+
+              <div className="text-center p-10 bg-gradient-to-br from-green-800/50 to-emerald-800/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-green-700/50 hover:border-green-500/50 transition-all">
+                <div className="text-6xl mb-6">🐋</div>
+                <div className="text-5xl font-bold mb-3">
+                  {Math.floor(stats.plasticAvoided / 1000).toLocaleString()}
+                </div>
+                <div className="text-xl font-semibold mb-2">Marine Animals Saved</div>
+                <p className="text-green-200 text-sm">
+                  Plastic waste avoided prevents ocean life harm annually
+                </p>
+              </div>
+
+              <div className="text-center p-10 bg-gradient-to-br from-green-800/50 to-emerald-800/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-green-700/50 hover:border-green-500/50 transition-all">
+                <div className="text-6xl mb-6">🚗</div>
+                <div className="text-5xl font-bold mb-3">
+                  {Math.floor(stats.co2Saved / 200).toLocaleString()}
+                </div>
+                <div className="text-xl font-semibold mb-2">Cars Off Road</div>
+                <p className="text-green-200 text-sm">
+                  Equivalent to removing this many cars for a full year
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Section 2: Sustainable Products Showcase */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Featured Sustainable Products
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Handpicked eco-friendly products that make a real difference
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredProducts.map((product) => (
-            <div key={product.id} className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden border border-gray-100">
-              <div className="h-48 overflow-hidden bg-gray-100">
-                <div className="w-full h-full flex items-center justify-center text-6xl">
-                  {product.id === 1 ? "🪥" : product.id === 2 ? "🛍️" : "💧"}
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">{product.name}</h3>
-                  <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-                    ${product.price}
-                  </span>
-                </div>
-                <p className="text-gray-600 mb-4">{product.description}</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-green-700">
-                    <FaLeaf className="mr-2" />
-                    <span className="text-sm font-semibold">Saves {product.co2}</span>
-                  </div>
-                  <Link 
-                    href={`/items/${product.id}`}
-                    className="text-green-600 hover:text-green-700 font-semibold text-sm flex items-center"
-                  >
-                    Learn More
-                    <FiArrowRight className="ml-1" />
-                  </Link>
-                </div>
-              </div>
+            <div className="mt-16 text-center">
+              <a
+                href="/impact"
+                className="inline-flex items-center px-8 py-4 bg-white text-green-900 font-semibold rounded-xl hover:bg-green-50 shadow-xl transform hover:-translate-y-0.5 transition-all"
+              >
+                <FaLeaf className="mr-2" />
+                Calculate Your Impact
+              </a>
             </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Link 
-            href="/items" 
-            className="inline-flex items-center text-green-600 hover:text-green-700 font-semibold text-lg"
-          >
-            View All Products
-            <FiArrowRight className="ml-2" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Section 3: Environmental Impact */}
-      <section className="bg-gradient-to-r from-green-900 to-emerald-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Real Environmental Impact
-            </h2>
-            <p className="text-xl text-green-200 max-w-3xl mx-auto">
-              See how our community is making a difference together
-            </p>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-green-800/30 rounded-2xl backdrop-blur-sm">
-              <div className="text-5xl mb-4">🌳</div>
-              <div className="text-4xl font-bold mb-2">
-                Equivalent to {Math.floor(stats.co2Saved / 20)} Trees
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 bg-green-100 rounded-full text-green-800 font-semibold text-sm mb-4">
+                BROWSE BY CATEGORY
               </div>
-              <p className="text-green-200">
-                CO₂ saved by our community would require this many trees to absorb in one year
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Eco-Friendly Solutions for Every Need
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Find sustainable alternatives for every aspect of your life
               </p>
             </div>
 
-            <div className="text-center p-8 bg-green-800/30 rounded-2xl backdrop-blur-sm">
-              <div className="text-5xl mb-4">🐋</div>
-              <div className="text-4xl font-bold mb-2">
-                Saves {Math.floor(stats.plasticAvoided / 1000)} Marine Animals
-              </div>
-              <p className="text-green-200">
-                Plastic waste avoided prevents harm to ocean life each year
-              </p>
-            </div>
-
-            <div className="text-center p-8 bg-green-800/30 rounded-2xl backdrop-blur-sm">
-              <div className="text-5xl mb-4">🚗</div>
-              <div className="text-4xl font-bold mb-2">
-                {Math.floor(stats.co2Saved / 200)} Cars Off Road
-              </div>
-              <p className="text-green-200">
-                CO₂ reduction equivalent to taking this many cars off the road for a year
-              </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {categories.map((category, index) => (
+                <a
+                  key={index}
+                  href={`/items?category=${category.name.toLowerCase().replace(' & ', '-')}`}
+                  className="group bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl border border-gray-100 hover:border-green-300 transition-all text-center transform hover:-translate-y-2 duration-300"
+                >
+                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">{category.icon}</div>
+                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{category.name}</h3>
+                  <div className="text-sm text-green-600 font-semibold">{category.count} products</div>
+                </a>
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="mt-12 text-center">
-            <Link 
-              href="/impact" 
-              className="inline-flex items-center px-6 py-3 bg-white text-green-900 font-semibold rounded-lg hover:bg-green-50"
-            >
-              <FaLeaf className="mr-2" />
-              Calculate Your Impact
-            </Link>
-          </div>
-        </div>
-      </section>
+        <section id="about" className="py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-block px-4 py-2 bg-green-100 rounded-full text-green-800 font-semibold text-sm mb-4">
+                  WHY US
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                  More Than Just a Marketplace
+                </h2>
+                <p className="text-xl text-gray-600 mb-10">
+                  We're a movement towards sustainable consumption with transparency and measurable impact at our core.
+                </p>
 
-      {/* Section 4: Categories */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Shop By Category
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find eco-friendly alternatives for every aspect of your life
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((category, index) => (
-            <Link
-              key={index}
-              href={`/items?category=${category.name.toLowerCase().replace(' & ', '-')}`}
-              className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg border border-gray-100 hover:border-green-200 transition-all text-center"
-            >
-              <div className="text-4xl mb-3">{category.icon}</div>
-              <h3 className="font-semibold text-gray-900 mb-1">{category.name}</h3>
-              <div className="text-sm text-gray-500">{category.count} products</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Section 5: Why Choose Us */}
-      <section className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Why Choose GreenGadgets Hub?
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              We're not just another marketplace. We're a movement towards sustainable consumption with 
-              transparency and impact at our core.
-            </p>
-            
-            <div className="space-y-6">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <div className="text-green-600 text-xl">
-                      {benefit.icon}
+                <div className="space-y-6">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start group">
+                      <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:from-green-200 group-hover:to-emerald-200 transition-all shadow-lg">
+                        <div className="text-green-600 text-2xl">
+                          {benefit.icon}
+                        </div>
+                      </div>
+                      <div className="ml-6">
+                        <h3 className="font-bold text-gray-900 text-xl mb-2">{benefit.title}</h3>
+                        <p className="text-gray-600 text-lg">{benefit.description}</p>
+                      </div>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-10 rounded-3xl shadow-xl">
+                <div className="space-y-6">
+                  <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-green-100">
+                    <h3 className="font-bold text-gray-900 text-xl mb-3">Verified Sustainability</h3>
+                    <p className="text-gray-600">
+                      Every product undergoes strict environmental impact assessment before listing
+                    </p>
                   </div>
-                  <div className="ml-4">
-                    <h3 className="font-bold text-gray-900 text-lg">{benefit.title}</h3>
-                    <p className="text-gray-600">{benefit.description}</p>
+
+                  <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-green-100">
+                    <h3 className="font-bold text-gray-900 text-xl mb-3">Impact Transparency</h3>
+                    <p className="text-gray-600">
+                      See exactly how much CO₂ and plastic you're saving with each purchase
+                    </p>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-green-100">
+                    <h3 className="font-bold text-gray-900 text-xl mb-3">Community Driven</h3>
+                    <p className="text-gray-600">
+                      10% of profits fund environmental conservation projects worldwide
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 bg-green-100 rounded-full text-green-800 font-semibold text-sm mb-4">
+                TESTIMONIALS
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                What Our Community Says
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Join thousands of conscious consumers making a real difference
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-gray-100">
+                  <div className="flex mb-6">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <FiStar key={i} className="text-yellow-400 fill-current text-xl" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 text-lg italic mb-8 leading-relaxed">"{testimonial.text}"</p>
+                  <div className="flex items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
+                      <span className="text-white text-xl font-bold">
+                        {testimonial.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div className="ml-4">
+                      <div className="font-bold text-gray-900 text-lg">{testimonial.name}</div>
+                      <div className="text-green-600 font-medium">{testimonial.role}</div>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl">
-            <div className="space-y-6">
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-gray-900 text-lg mb-2">Verified Sustainability</h3>
-                <p className="text-gray-600 text-sm">
-                  Every product undergoes strict environmental impact assessment before listing
-                </p>
+        <section className="py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
               </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-gray-900 text-lg mb-2">Impact Transparency</h3>
-                <p className="text-gray-600 text-sm">
-                  See exactly how much CO₂ and plastic you're saving with each purchase
-                </p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-bold text-gray-900 text-lg mb-2">Community Driven</h3>
-                <p className="text-gray-600 text-sm">
-                  10% of profits fund environmental conservation projects worldwide
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Section 6: Testimonials */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            What Our Community Says
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join thousands of conscious consumers making a difference
-          </p>
-        </div>
+              <div className="relative z-10">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  Ready to Make a Difference?
+                </h2>
+                <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed">
+                  Join our community of eco-conscious shoppers and start reducing your environmental impact today.
+                </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-              <div className="flex mb-6">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FiStar key={i} className="text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 italic mb-6">"{testimonial.text}"</p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">
-                    {testimonial.name.charAt(0)}
-                  </span>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                  <a
+                    href="/login"
+                    className="inline-flex items-center justify-center px-10 py-4 bg-white text-green-600 font-bold rounded-xl hover:bg-green-50 transition-all shadow-lg transform hover:-translate-y-1 text-lg"
+                  >
+                    Create Free Account
+                    <FiArrowRight className="ml-2" />
+                  </a>
+                  <a
+                    href="/items"
+                    className="inline-flex items-center justify-center px-10 py-4 bg-green-800 hover:bg-green-900 text-white font-bold rounded-xl transition-all shadow-lg transform hover:-translate-y-1 text-lg"
+                  >
+                    Browse Without Account
+                  </a>
                 </div>
-                <div className="ml-4">
-                  <div className="font-bold text-gray-900">{testimonial.name}</div>
-                  <div className="text-green-600 text-sm">{testimonial.role}</div>
+
+                <div className="flex flex-wrap justify-center gap-8 text-green-100">
+                  <div className="flex items-center text-lg">
+                    <FiCheck className="mr-2 text-2xl" />
+                    No hidden fees
+                  </div>
+                  <div className="flex items-center text-lg">
+                    <FiCheck className="mr-2 text-2xl" />
+                    Free shipping over $50
+                  </div>
+                  <div className="flex items-center text-lg">
+                    <FiCheck className="mr-2 text-2xl" />
+                    30-day returns
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Section 7: Call To Action */}
-      <section className="container mx-auto px-4">
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-3xl p-8 md:p-12 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Make a Difference?
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join our community of eco-conscious shoppers and start reducing your environmental impact today.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/login"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-green-600 font-semibold rounded-lg hover:bg-green-50 transition-all"
-            >
-              Create Free Account
-              <FiArrowRight className="ml-2" />
-            </Link>
-            <Link 
-              href="/items"
-              className="inline-flex items-center justify-center px-8 py-4 bg-green-800 hover:bg-green-900 text-white font-semibold rounded-lg transition-all"
-            >
-              Browse Without Account
-            </Link>
           </div>
+        </section>
+      </main>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-6 text-green-200">
-            <div className="flex items-center">
-              <FiCheck className="mr-2" />
-              No hidden fees
-            </div>
-            <div className="flex items-center">
-              <FiCheck className="mr-2" />
-              Free shipping over $50
-            </div>
-            <div className="flex items-center">
-              <FiCheck className="mr-2" />
-              30-day returns
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+
+    </div>
   );
 }

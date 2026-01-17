@@ -1,4 +1,4 @@
-# 🌱 GreenGadgets Hub
+# GreenGadgets Hub
 
 **GreenGadgets Hub** is a full-stack eco-friendly e-commerce platform where users can explore and purchase sustainable products while tracking their environmental impact, such as CO₂ savings and plastic reduction.
 
@@ -6,19 +6,20 @@ The platform promotes conscious consumption by showcasing verified green product
 
 ---
 
-https://green-gadgets-hub.vercel.app
+**Client Side Live Link : ** https://green-gadgets-hub.vercel.app
+**Server Side Live Link : ** https://green-gadgets-server.onrender.com
 
-## 🚀 Live Features Overview
+##  Live Features Overview
 
-- ✅ Eco-friendly product marketplace
-- 📊 Real-time environmental impact statistics
-- 🔒 Secure product creation for authenticated users
-- 🎨 Clean, modern UI with responsive design
-- 🔔 Toast notifications for better user feedback
+- Eco-friendly product marketplace
+- Real-time environmental impact statistics
+- Secure product creation for authenticated users
+- Clean, modern UI with responsive design
+- Toast notifications for better user feedback
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - **Next.js** (App Router)
@@ -33,15 +34,15 @@ https://green-gadgets-hub.vercel.app
 
 ---
 
-## ⚙️ Setup & Installation
+##  Setup & Installation
 
-### 1️⃣ Clone the Repository
+### 1️ Clone the Repository
 ```bash
 git clone https://github.com/your-username/greengadgets-hub.git
 cd greengadgets-hub
 ```
 
-### 2️⃣ Install Dependencies
+### 2️ Install Dependencies
 
 #### For Frontend:
 ```bash
@@ -54,7 +55,7 @@ cd backend
 npm install
 ```
 
-### 3️⃣ Environment Variables
+### 3️ Environment Variables
 
 Create a `.env.local` file in the root directory:
 
@@ -68,23 +69,13 @@ PORT=5000
 JWT_SECRET=your_jwt_secret_key
 ```
 
-### 4️⃣ Run MongoDB
-
-Make sure MongoDB is running on your system:
-```bash
-# If using local MongoDB
-mongod
-
-# Or use MongoDB Atlas cloud database
-```
-
-### 5️⃣ Run the Development Server
+### 4 Run the Development Server
 
 #### Start Backend Server:
 ```bash
 cd backend
 npm start
-# or for development with auto-reload
+
 npm run dev
 ```
 
@@ -99,7 +90,7 @@ Frontend will run on: `http://localhost:3000`
 
 ---
 
-## 🧭 Route Summary
+##  Route Summary
 
 | Route | Description |
 |-------|-------------|
@@ -112,27 +103,27 @@ Frontend will run on: `http://localhost:3000`
 
 ---
 
-## ✨ Implemented Features
+##  Implemented Features
 
-### ✅ Product Management
+###  Product Management
 - Add new eco-friendly products
 - Input product name, description, price, image & CO₂ savings
 - Protected route using cookie-based authentication
 - Edit and delete products (admin)
 
-### ✅ Toast Notification System
+###  Toast Notification System
 - Displays success message after product creation
 - Auto-hides after 3 seconds
 - Shows error messages on failure
 - Non-intrusive and user-friendly
 
-### ✅ Environmental Impact Tracking
-- 🌍 Live CO₂ saved counter
-- ♻️ Plastic avoided statistics
-- 🌳 Trees equivalent visualization
+###  Environmental Impact Tracking
+-  Live CO₂ saved counter
+-  Plastic avoided statistics
+-  Trees equivalent visualization
 - Real-time aggregated impact metrics
 
-### ✅ UI & UX Enhancements
+### UI & UX Enhancements
 - Fully responsive layout for all devices
 - Animated sections and smooth hover effects
 - Modern gradient-based design system
@@ -141,35 +132,35 @@ Frontend will run on: `http://localhost:3000`
 
 ---
 
-## 🔔 Toast Notification Feature
+##  Toast Notification Feature
 
 When a product is successfully created:
-- ✅ A success toast appears with confirmation
-- 🔄 Form resets automatically
-- 🔀 User is redirected to the products page
-- 📱 Mobile-friendly notification design
+-  A success toast appears with confirmation
+-  Form resets automatically
+-  User is redirected to the products page
+-  Mobile-friendly notification design
 
 This improves user experience and provides clear, immediate feedback for all actions.
 
 ---
 
-## 📌 Feature Explanation
+##  Feature Explanation
 
-### 🌿 Eco Verification
+###  Eco Verification
 All products are verified and showcased as eco-friendly alternatives to conventional items.
 
-### 📊 Impact Transparency
+###  Impact Transparency
 Users can see exactly how much CO₂ and plastic waste they save with each purchase, promoting informed decision-making.
 
-### 🔐 Protected Actions
+###  Protected Actions
 Only authenticated users can add, edit, or delete products, ensuring data integrity and platform security.
 
-### 👥 Community Focused
+###  Community Focused
 The platform encourages sustainable lifestyle choices and builds a community around conscious consumption.
 
 ---
 
-## 🌍 Future Improvements
+##  Future Improvements
 
 - [ ] Full user authentication with JWT tokens
 - [ ] Shopping cart & checkout system
@@ -185,7 +176,7 @@ The platform encourages sustainable lifestyle choices and builds a community aro
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 greengadgets-hub/
@@ -222,58 +213,17 @@ greengadgets-hub/
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👤 Author
 
 **Kabir Hossain**
 
 📍 Feni, Bangladesh  
-📧 Email: nerob2308@gmail.com  
-🔗 GitHub: [@your-username](https://github.com/your-username)  
-💼 LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/your-profile)
+📧 Email: nerob2308@gmail.com 
 
 ---
 
-## 🙏 Acknowledgments
-
-- Next.js team for the amazing framework
-- MongoDB for the flexible database
-- Tailwind CSS for the utility-first styling
-- The open-source community for inspiration
-
----
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-- 📧 Email: nerob2308@gmail.com
-- 🐛 Open an issue on GitHub
-- 💬 Start a discussion in the repository
-
----
-
-## ⭐ Show Your Support
+##  Show Your Support
 
 If you like this project, please consider giving it a ⭐ on GitHub!
 
 ---
-
-**Made with 💚 for a sustainable future**

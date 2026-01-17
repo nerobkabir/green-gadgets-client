@@ -29,7 +29,6 @@ export default function Navbar() {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
 
-    // Close menus when clicking outside
     const handleClickOutside = (e) => {
       if (!e.target.closest('.user-menu-container')) {
         setShowUserMenu(false);
@@ -68,7 +67,6 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -86,7 +84,6 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
               {navItems.map((item) => {
                 if (item.protected && !isLoggedIn) return null;
@@ -109,15 +106,12 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Right Side Actions */}
             <div className="flex items-center space-x-3">
-              {/* Impact Badge - Desktop Only */}
               <div className="hidden lg:flex items-center space-x-2 px-3 py-1.5 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200">
                 <MdEco className="text-green-600 text-sm" />
                 <span className="text-xs font-semibold text-green-700">12.5k kg CO₂ saved</span>
               </div>
 
-              {/* User Menu - Desktop */}
               {isLoggedIn ? (
                 <div className="hidden md:block relative user-menu-container">
                   <button
@@ -133,7 +127,6 @@ export default function Navbar() {
                     <span className="text-sm font-medium">Account</span>
                   </button>
 
-                  {/* Dropdown Menu */}
                   {showUserMenu && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 animate-fade-in">
                       <div className="px-4 py-2 border-b border-gray-100">
@@ -160,7 +153,6 @@ export default function Navbar() {
                 </Link>
               )}
 
-              {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
@@ -171,7 +163,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
             isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
@@ -200,13 +191,11 @@ export default function Navbar() {
                 );
               })}
 
-              {/* Impact Badge - Mobile */}
               <div className="flex items-center space-x-2 px-4 py-2 mx-2 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200 mt-2">
                 <MdEco className="text-green-600" />
                 <span className="text-xs font-semibold text-green-700">12.5k kg CO₂ saved</span>
               </div>
 
-              {/* Auth Section - Mobile */}
               <div className="mt-3 pt-3 border-t border-gray-100">
                 {isLoggedIn ? (
                   <button
@@ -235,7 +224,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Spacer to prevent content from going under fixed navbar */}
       <div className="h-16"></div>
 
       

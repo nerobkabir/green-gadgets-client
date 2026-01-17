@@ -8,12 +8,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200">
+    <footer className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
       <div className="container mx-auto px-6 py-8">
-        {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
-          {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <MdEco className="text-4xl text-green-600" />
@@ -30,7 +28,6 @@ export default function Footer() {
               Building a sustainable future through eco-friendly products. Every purchase helps protect our planet.
             </p>
             
-            {/* Social Media */}
             <div className="flex space-x-3">
               {[
                 { icon: <FaFacebook />, href: "#", label: "Facebook" },
@@ -50,7 +47,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -72,7 +68,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Contact Us</h3>
             <div className="space-y-3 text-sm">
@@ -82,7 +77,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start space-x-2">
                 <MdPhone className="text-green-600 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-600">+1 (555) 123-4567</span>
+                <span className="text-gray-600">01856846615</span>
               </div>
               <div className="flex items-start space-x-2">
                 <MdLocationOn className="text-green-600 mt-0.5 flex-shrink-0" />
@@ -92,17 +87,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-8 border-t border-gray-200"></div>
 
-        {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Copyright */}
           <div className="text-gray-600 text-sm mb-4 md:mb-0">
             © {currentYear} GreenGadgets Hub. All rights reserved.
           </div>
 
-          {/* Environmental Impact Stats - Simple */}
           <div className="flex items-center space-x-4">
             <div className="text-center">
               <div className="font-semibold text-green-700">12.5K kg</div>
@@ -115,21 +106,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Legal Links */}
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-gray-500 hover:text-green-600 text-sm">
+            <Link href="#" className="text-gray-500 hover:text-green-600 text-sm">
               Privacy
             </Link>
-            <Link href="/terms" className="text-gray-500 hover:text-green-600 text-sm">
+            <Link href="#" className="text-gray-500 hover:text-green-600 text-sm">
               Terms
             </Link>
-            <Link href="/cookies" className="text-gray-500 hover:text-green-600 text-sm">
+            <Link href="#" className="text-gray-500 hover:text-green-600 text-sm">
               Cookies
             </Link>
           </div>
         </div>
 
-        {/* Environmental Certification Badge - Simple */}
         <div className="mt-6 flex justify-center">
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white border border-green-200 rounded-full">
             <MdEco className="text-green-600" />

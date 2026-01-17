@@ -1,6 +1,6 @@
 async function getItem(id) {
   try {
-    // Better ID validation - MongoDB ObjectIds are 24 hex characters
+    
     if (!id || !/^[a-f\d]{24}$/i.test(id)) {
       console.error("Invalid MongoDB ObjectId format:", id);
       return null;
@@ -20,14 +20,14 @@ async function getItem(id) {
     const data = await res.json();
     console.log("Fetched item data:", data);
     return data;
-  } catch (err) {
+  } 
+  catch (err) {
     console.error("Error fetching item:", err);
     return null;
   }
 }
 
 export default async function ItemDetails({ params }) {
-  // In Next.js App Router, params needs to be awaited
   const { id } = await params;
   
   console.log("Item ID from params:", id);
@@ -56,7 +56,6 @@ export default async function ItemDetails({ params }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Breadcrumb */}
       <div className="text-sm text-gray-500 mb-6">
         <a href="/" className="hover:text-green-600">Home</a>
         <span className="mx-2">/</span>
@@ -65,9 +64,7 @@ export default async function ItemDetails({ params }) {
         <span className="text-gray-900 font-medium">{item.name}</span>
       </div>
 
-      {/* Product Details */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Product Image */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           {item.image ? (
             <img 
@@ -82,7 +79,6 @@ export default async function ItemDetails({ params }) {
           )}
         </div>
 
-        {/* Product Info */}
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -93,12 +89,10 @@ export default async function ItemDetails({ params }) {
             </div>
           </div>
 
-          {/* Price */}
           <div className="text-4xl font-bold text-green-700">
             ${typeof item.price === 'number' ? item.price.toFixed(2) : item.price}
           </div>
 
-          {/* Environmental Impact */}
           {item.co2 && (
             <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Environmental Impact</h3>
@@ -116,7 +110,6 @@ export default async function ItemDetails({ params }) {
             </div>
           )}
 
-          {/* Description */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
             <p className="text-gray-700 leading-relaxed">
@@ -124,7 +117,6 @@ export default async function ItemDetails({ params }) {
             </p>
           </div>
 
-          {/* Features */}
           <div className="grid grid-cols-2 gap-4">
             <div className="p-3 bg-gray-50 rounded-lg">
               <div className="text-sm text-gray-500">Material</div>
@@ -136,7 +128,6 @@ export default async function ItemDetails({ params }) {
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="pt-6 border-t border-gray-200">
             <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium mb-3">
               Add to Cart
@@ -148,7 +139,6 @@ export default async function ItemDetails({ params }) {
         </div>
       </div>
 
-      {/* Related Info */}
       <div className="mt-12 p-6 bg-green-50 rounded-xl">
         <h3 className="font-bold text-gray-900 mb-4">Why This Product is Eco-Friendly</h3>
         <ul className="space-y-2 text-gray-700">
