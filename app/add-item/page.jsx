@@ -41,7 +41,7 @@ export default function AddItem() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://green-gadgets-server.onrender.com/items", {
+      const res = await fetch("https://green-gadgets-server.vercel.app/items", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 

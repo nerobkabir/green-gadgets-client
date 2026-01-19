@@ -6,7 +6,7 @@ async function getItem(id) {
       return null;
     }
 
-    const res = await fetch(`https://green-gadgets-server.onrender.com/items/${id}`, { 
+    const res = await fetch(`https://green-gadgets-server.vercel.app/items/${id}`, { 
       cache: "no-store" 
     });
     
