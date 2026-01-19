@@ -7,7 +7,7 @@ The platform promotes conscious consumption by showcasing verified green product
 ---
 
 ### Client Side Live Link : https://green-gadgets-hub.vercel.app
-### Server Side Live Link : https://green-gadgets-server.onrender.com
+### Server Side Live Link : https://green-gadgets-server.vercel.app/
 
 ##  Live Features Overview
 
